@@ -1,0 +1,161 @@
+/* General Reset */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  flex-wrap: wrap;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background-color: #222222;
+  color: white;
+  padding: 20px 10px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 35px 0;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.sidebar ul li a {
+  color: wheat;
+  cursor: pointer;
+  padding: 14px 20px;
+  border: 1px solid wheat;
+  border-radius: 15px;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.sidebar ul li ul {
+  margin-top: 5px;
+  margin-left: 20px;
+  list-style-type: circle;
+  font-size: 16px;
+}
+
+.sidebar ul li ul a {
+  color: wheat;
+  cursor: pointer;
+  padding: 14px 20px;
+  border: 1px solid wheat;
+  border-radius: 15px;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.sidebar ul li ul a:hover {
+  color: #222222;
+  background-color: wheat;
+  transition: 0.8s;
+}
+
+/* Main Content Styling */
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  background-color: #f5f6fa;
+  overflow-y: auto;
+}
+
+.main-content h1 {
+  text-align: center;
+}
+
+/* Form Styling */
+form {
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #1abc9c;
+  outline: none;
+}
+
+.btn {
+  display: inline-block;
+  background-color: wheat;
+  color: #222222;
+  padding: 10px 25px;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #222222;
+  color: wheat;
+  transition: all 0.6s ease-in-out;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-group input,
+  .form-group select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}

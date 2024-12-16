@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/addcontractor.css">
+    <title>Add Contractor</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li>
+                    Jobs
+                    <ul>
+                        <li><a href="addjob.html">Add Job</a></li>
+                        <li><a href="viewjob.html">View Jobs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Contractors
+                    <ul>
+                        <li><a href="addcontractor.html">Add Contractor</a></li>
+                        <li><a href="viewcontractor.html">View Contractors</a></li>
+                    </ul>
+                </li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section>
+                <h1>Add Contractor</h1>
+                <form id="add-contractor-form">
+                    <div class="form-group">
+                        <label for="contractor-name">Name</label>
+                        <input type="text" id="contractor-name" name="name" placeholder="Enter contractor name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contractor-category">Category</label>
+                        <select id="contractor-category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="gardening">Gardening</option>
+                            <option value="swimming-pool">Swimming Pool</option>
+                            <option value="cleaning">Cleaning</option>
+                            <option value="carpet-cleaning">Carpet Cleaning</option>
+                            <option value="building">Building</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contractor-phone">Mobile Number</label>
+                        <input type="text" id="contractor-phone" name="mobile" placeholder="Enter mobile number"
+                            required>
+                    </div>
+                    <button type="submit" class="btn">Add Contractor</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="js/shared.js"></script>
+    <script src="js/contractor.js"></script>
+    <script src="js/config.js"></script>
+</body>
+
+</html>

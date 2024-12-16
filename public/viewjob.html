@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/viewjob.css">
+    <title>View Jobs</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li>
+                    Jobs
+                    <ul>
+                        <li><a href="addjob.html">Add Job</a></li>
+                        <li><a href="viewjob.html">View Jobs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Contractors
+                    <ul>
+                        <li><a href="addcontractor.html">Add Contractor</a></li>
+                        <li><a href="viewcontractor.html">View Contractors</a></li>
+                    </ul>
+                </li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section>
+                <h1>View and Edit Jobs</h1>
+                <div class="filters">
+                    <label for="filter-status">Filter by Status:</label>
+                    <select id="filter-status">
+                        <option value="">All</option>
+                        <option value="justgot">Just Got</option>
+                        <option value="inspected">Inspected</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <button id="filter-btn" class="btn">Apply Filter</button>
+                </div>
+
+                <table id="job-table">
+                    <thead>
+                        <tr>
+                            <th>Job ID</th>
+                            <th>Category</th>
+                            <th>Address</th>
+                            <th>Created Date</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+                            <th>Contractor</th>
+                            <th>Contractor Quote</th>
+                            <th>Job Quote</th>
+                            <th>Expenses</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will be added here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <!-- Ensure config.js is loaded first -->
+    <script src="js/config.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/job.js"></script>
+</body>
+
+</html>

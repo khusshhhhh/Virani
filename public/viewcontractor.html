@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/viewcontractor.css">
+    <title>View Contractors</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li>
+                    Jobs
+                    <ul>
+                        <li><a href="addjob.html">Add Job</a></li>
+                        <li><a href="viewjob.html">View Jobs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Contractors
+                    <ul>
+                        <li><a href="addcontractor.html">Add Contractor</a></li>
+                        <li><a href="viewcontractor.html">View Contractors</a></li>
+                    </ul>
+                </li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section>
+                <h1>View Contractors</h1>
+                <table id="contractor-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Mobile</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will be added here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Contractor Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Edit Contractor</h2>
+            <form id="edit-contractor-form">
+                <div class="form-group">
+                    <label for="edit-mobile">Mobile Number</label>
+                    <input type="text" id="edit-mobile" name="mobile" placeholder="Enter new mobile number" required>
+                </div>
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/shared.js"></script>
+    <script src="js/contractor.js"></script>
+    <script src="js/config.js"></script>
+</body>
+
+</html>

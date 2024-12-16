@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/addjob.css">
+    <title>Add Job</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li>
+                    Jobs
+                    <ul>
+                        <li><a href="addjob.html">Add Job</a></li>
+                        <li><a href="viewjob.html">View Jobs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Contractors
+                    <ul>
+                        <li><a href="addcontractor.html">Add Contractor</a></li>
+                        <li><a href="viewcontractor.html">View Contractors</a></li>
+                    </ul>
+                </li>
+                <li><a href="reports.html">Reports</a></li>
+                <footer>
+                    <h5>Developed and Managed by <br><a href="www.prelette.com">Prelette</a></h5>
+                </footer>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section>
+                <h1>Add Job Details</h1>
+                <form id="add-job-form">
+                    <div class="form-group">
+                        <label for="job-category">Job Category</label>
+                        <select id="job-category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="gardening">Gardening</option>
+                            <option value="swimming-pool">Swimming Pool</option>
+                            <option value="cleaning">Cleaning</option>
+                            <option value="carpet-cleaning">Carpet Cleaning</option>
+                            <option value="building">Building</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Job Address</label>
+                        <input type="text" id="address" name="address" placeholder="Enter job address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="job-size">Job Size (Optional)</label>
+                        <input type="number" id="job-size" name="size" placeholder="Enter job size in sqm">
+                    </div>
+                    <div class="form-group">
+                        <label for="job-created-date">Job Created Date</label>
+                        <input type="date" id="job-created-date" name="created_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="job-deadline-date">Job Deadline Date (Optional)</label>
+                        <input type="date" id="job-deadline-date" name="deadline">
+                    </div>
+                    <div class="form-group">
+                        <label for="job-status">Job Status</label>
+                        <select id="job-status" name="status" required>
+                            <option value="">Job Status</option>
+                            <option value="justgot">Just Got</option>
+                            <option value="inspected">Inspected</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assign-contractor">Assign Contractor (Optional)</label>
+                        <select id="assign-contractor" name="contractor">
+                            <option value="">Select Contractor</option>
+                            <!-- Contractors will be dynamically loaded here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contractor-quote">Contractor Quote (AUD) (Optional)</label>
+                        <input type="number" id="contractor-quote" name="contractor_quote"
+                            placeholder="Enter contractor quote">
+                    </div>
+                    <div class="form-group">
+                        <label for="job-quote">Job Quote (AUD) (Optional)</label>
+                        <input type="number" id="job-quote" name="job_quote" placeholder="Enter job quote">
+                    </div>
+                    <div class="form-group">
+                        <label for="expenses">Expenses (Optional)</label>
+                        <input type="number" id="expenses" name="expenses" placeholder="Enter any expenses">
+                    </div>
+                    <button type="submit" class="btn">Add Job</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/job.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const assignContractorDropdown = document.getElementById("assign-contractor");
+
+            // Fetch and populate contractors
+            try {
+                const response = await fetch(`${BASE_URL}/contractors`, { method: "GET" });
+                if (!response.ok) throw new Error("Failed to fetch contractors");
+
+                const contractors = await response.json();
+
+                contractors.forEach((contractor) => {
+                    const option = document.createElement("option");
+                    option.value = contractor.name; // Use unique identifier like contractor.id if available
+                    option.textContent = contractor.name;
+                    assignContractorDropdown.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error fetching contractors for dropdown:", error);
+                alert("Error fetching contractors. Please try again.");
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const assignContractorDropdown = document.getElementById("assign-contractor");
+            const addJobForm = document.getElementById("add-job-form");
+
+            // Fetch and populate contractors in the dropdown
+            try {
+                const response = await fetch(`${BASE_URL}/contractors`);
+                if (!response.ok) throw new Error("Failed to fetch contractors");
+
+                const contractors = await response.json();
+                assignContractorDropdown.innerHTML = `<option value="">Select Contractor</option>`;
+
+                contractors.forEach((contractor) => {
+                    const option = document.createElement("option");
+                    option.value = contractor.name; // Use contractor.id if needed
+                    option.textContent = contractor.name;
+                    assignContractorDropdown.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error fetching contractors:", error);
+                alert("Error fetching contractors. Please try again.");
+            }
+
+            // Handle form submission
+            addJobForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    category: document.getElementById("job-category").value,
+                    address: document.getElementById("address").value.trim(),
+                    size: document.getElementById("job-size").value || null,
+                    created_date: document.getElementById("job-created-date").value,
+                    deadline: document.getElementById("job-deadline-date").value || null,
+                    status: document.getElementById("job-status").value,
+                    contractor: assignContractorDropdown.value || null,
+                    contractor_quote: document.getElementById("contractor-quote").value || null,
+                    job_quote: document.getElementById("job-quote").value || null,
+                    expenses: document.getElementById("expenses").value || null,
+                };
+
+                try {
+                    const response = await fetch(`${BASE_URL}/jobs`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(formData),
+                    });
+
+                    if (!response.ok) throw new Error("Failed to add job");
+
+                    alert("Job added successfully!");
+                    addJobForm.reset();
+                } catch (error) {
+                    console.error("Error adding job:", error);
+                    alert("Error adding job. Please try again.");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <ul>
+                <li>Dashboard</li>
+                <li>
+                    Jobs
+                    <ul>
+                        <li><a href="addjob.html">Add Job</a></li>
+                        <li><a href="viewjob.html">View Jobs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Contractors
+                    <ul>
+                        <li><a href="addcontractor.html">Add Contractor</a></li>
+                        <li><a href="viewcontractor.html">View Contractors</a></li>
+                    </ul>
+                </li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <section>
+                <h2>Dashboard</h2>
+                <div class="widgets">
+                    <div class="widget">
+                        <h3>Recent Jobs</h3>
+                        <ul id="recent-jobs">
+                            <!-- Recent jobs will be dynamically added here -->
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3>Recent Contractors</h3>
+                        <ul id="recent-contractors">
+                            <!-- Recent contractors will be dynamically added here -->
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3>Revenue Chart</h3>
+                        <div id="revenue-chart">
+                            <!-- Chart or other content can go here -->
+                            <p>Revenue visualization coming soon!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/shared.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/config.js"></script>
+</body>
+
+</html>
