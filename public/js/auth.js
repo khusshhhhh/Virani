@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://virani1.onrender.com";
 
 // Login
 document.getElementById("login-form").addEventListener("submit", async (e) => {
