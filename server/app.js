@@ -9,24 +9,23 @@ const app = express();
 
 // PostgreSQL Configuration
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "job_management",
-  password: "khush3160", // Replace with your PostgreSQL password
-  port: 5432,
+  connectionString: process.env.DATABASE_URL, // Use Render's DATABASE_URL environment variable
+  ssl: {
+    rejectUnauthorized: false, // Required for Render PostgreSQL
+  },
 });
 
 // Middleware
 app.use(
   cors({
-    origin: ["http://127.0.0.1:5500", "http://localhost:5000"],
-    credentials: true, // Allow cookies to be sent with requests
+    origin: ["https://paramountlandscaping.au", "http://localhost:5500"], // Allow frontend requests
+    credentials: true, // Allow cookies
   })
 );
 app.use(bodyParser.json());
 
 // Serve Static Files
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // ------------------ Authentication Endpoints ------------------
 
@@ -49,7 +48,6 @@ app.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid username or password" });
     }
 
-    // Respond with success message only
     res.json({ message: "Login successful", redirect: "dashboard.html" });
   } catch (error) {
     console.error("Error during login:", error);
@@ -144,8 +142,9 @@ app.delete("/jobs/:id", isAuthenticated, async (req, res) => {
   }
 });
 
+// Update Job
 app.put("/jobs/:id", async (req, res) => {
-  const { id } = req.params; // Extract job ID from URL
+  const { id } = req.params;
   const {
     address,
     deadline,
@@ -178,7 +177,7 @@ app.put("/jobs/:id", async (req, res) => {
       return res.status(404).json({ error: "Job not found" });
     }
 
-    res.json(result.rows[0]); // Return the updated job
+    res.json(result.rows[0]);
   } catch (error) {
     console.error("Error updating job:", error);
     res.status(500).json({ error: "Failed to update job" });
@@ -215,6 +214,7 @@ app.get("/contractors", isAuthenticated, async (req, res) => {
   }
 });
 
+// Delete Contractor
 app.delete("/contractors/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -239,6 +239,7 @@ app.delete("/contractors/:id", async (req, res) => {
 });
 
 // ------------------ Start Server ------------------
-app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
