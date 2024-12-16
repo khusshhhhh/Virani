@@ -18,7 +18,10 @@ const pool = new Pool({
 // Middleware
 app.use(
   cors({
-    origin: ["https://paramountlandscaping.au", "http://localhost:5500"], // Allow frontend requests
+    origin: [
+      "https://paramountlandscaping.au",
+      "https://api.paramountlandscaping.au",
+    ], // Allow frontend requests
     credentials: true, // Allow cookies
   })
 );

@@ -1,5 +1,5 @@
 // Ensure BASE_URL is globally defined somewhere in your project
-const BASE_URL = "https://virani1.onrender.com"; // Uncomment if BASE_URL is not already globally defined
+const BASE_URL = "https://api.paramountlandscaping.au"; // Uncomment if BASE_URL is not already globally defined
 
 const contractorForm = document.getElementById("add-contractor-form");
 const contractorTable = document.querySelector("#contractor-table tbody");
